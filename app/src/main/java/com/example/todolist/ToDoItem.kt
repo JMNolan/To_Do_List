@@ -1,8 +1,17 @@
 package com.example.todolist
 
 import io.realm.RealmObject
+import io.realm.annotations.PrimaryKey
+import java.util.*
 
-public open class ToDoItem : RealmObject() {
-    public var toDoText = ""
-    public var isImportant = false
+open class ToDoItem : RealmObject() {
+    @PrimaryKey
+    private var id = UUID.randomUUID().toString()
+    var toDoText = ""
+    var isImportant = false
+
+
+    fun getID(): String {
+        return id
+    }
 }

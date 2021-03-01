@@ -2,9 +2,9 @@ package com.example.todolist
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -45,7 +45,6 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         listItems = queryToDoItems()
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

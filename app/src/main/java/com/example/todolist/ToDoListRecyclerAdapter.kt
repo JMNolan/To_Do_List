@@ -18,6 +18,13 @@ class ToDoListRecyclerAdapter(private val items: List<ToDoItem>): RecyclerView.A
     override fun onBindViewHolder(holder: ToDoListItemViewHolder, position: Int) {
         val toDoItem = items[position]
         holder.toDoListItemText.text = toDoItem.toDoText
+        holder.itemView.setOnClickListener {
+            val intent = Intent(holder.itemView.context, CompleteToDoActivity::class.java)
+            val id = items[position].getID()
+            intent.putExtra("ItemID", id)
+            holder.itemView.context.startActivity(intent)
+            items
+        }
     }
 
     override fun getItemCount(): Int {
@@ -29,14 +36,6 @@ class ToDoListRecyclerAdapter(private val items: List<ToDoItem>): RecyclerView.A
     //custom ViewHolder for the ToDoItem recyclerView
     inner class ToDoListItemViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val toDoListItemText: TextView =itemView.findViewById(R.id.toDoItemRowText)
-        init {
-            itemView.setOnClickListener {
-                //prompt the user with the option to complete the list item
-                val intent = Intent(itemView.context, CompleteToDoActivity::class.java)
-                itemView.context.startActivity(intent)
-            }
-        }
-
         fun bind(toDoListItem: ToDoItem, clickListener: (ToDoItem) -> Unit){
             toDoListItemText.text = toDoListItem.toDoText
         }

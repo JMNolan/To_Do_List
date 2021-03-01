@@ -1,11 +1,12 @@
 package com.example.todolist
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import io.realm.Realm
+import java.util.*
 
 class AddToDoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,7 +25,7 @@ class AddToDoActivity : AppCompatActivity() {
             val isImportant = isImportantCheckbox.isChecked
 
             realm.beginTransaction()
-            val toDoItem = realm.createObject(ToDoItem::class.java)
+            val toDoItem = realm.createObject(ToDoItem::class.java, UUID.randomUUID().toString())
             toDoItem.toDoText = toDoItemText
             toDoItem.isImportant = isImportant
             realm.commitTransaction()
